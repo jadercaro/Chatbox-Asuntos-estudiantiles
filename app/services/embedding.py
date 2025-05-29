@@ -5,7 +5,7 @@ from sentence_transformers import SentenceTransformer
 def embed_documents():
     # Aquí va la lógica del notebook 02
 
-    file_faq = "Conformed/df_unificado.xlsx"
+    file_faq = "app\\services\\Conformed\\df_unificado.xlsx"
     df = pd.read_excel(file_faq)
 
     #Juntamos la pregunta y respuesta para poderla convertir en un solo vector
@@ -19,6 +19,6 @@ def embed_documents():
     embeddings = model.encode(texts, show_progress_bar=True)
 
     # Guardar los embeddings en un archivo .npy
-    np.save('Conformed/faq_embeddings.npy', embeddings)
+    np.save('app\\services\\Conformed\\faq_embeddings.npy', embeddings)
 
     return {"status": "embeddings created"}

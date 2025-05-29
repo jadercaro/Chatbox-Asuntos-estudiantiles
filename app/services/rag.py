@@ -7,7 +7,7 @@ from app.config import API_KEY
 
 def answer_question(question):
 
-    embeddings = np.load('Conformed/faq_embeddings.npy')
+    embeddings = np.load('app\\services\\Conformed\\faq_embeddings.npy') 
 
     dimension = embeddings.shape[1]
     index = faiss.IndexFlatL2(dimension)
@@ -20,7 +20,7 @@ def answer_question(question):
 
     distancias, indices = index.search(embedding_pregunta, k=5)
 
-    df = pd.read_excel("Conformed/df_unificado.xlsx")
+    df = pd.read_excel("app\\services\\Conformed\\df_unificado.xlsx")
     df['text'] = "Pregunta: " + df['pregunta'] + "\nRespuesta: " + df['respuesta']
     texts = df['text'].tolist()
     textos_recuperados = [texts[i] for i in indices[0]]

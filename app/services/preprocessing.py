@@ -48,6 +48,6 @@ def process_file(file):
         df1.iloc[i:end_idx] = df_actualizado
         total_errors += errors
         
-        guardar_resultados(df1, "resultados_parciales--fecha--.xlsx")
-    guardar_resultados(df1, "resultados_finales--fecha--.xlsx")
+        guardar_resultados(df1, "app\\services\\Conformed\\resultados_parciales--fecha--.xlsx")
+    guardar_resultados(df1, "app\\services\\Conformed\\resultados_finales--fecha--.xlsx")
     return {"status": "preprocessed"}
