@@ -22,13 +22,17 @@ from langchain.llms import HuggingFaceEndpoint, HuggingFaceHub
 from langchain.prompts import PromptTemplate
 from langchain.text_splitter import CharacterTextSplitter
 from sentence_transformers import SentenceTransformer
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # LangChain: Integraciones adicionales
 from langchain_community.vectorstores import FAISS
 from langchain_groq import ChatGroq
 
 #Api Key de Groq
-API_KEY = "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"
+API_KEY = os.getenv("token_groq")
 
 # Cargar los PDF desde una carpeta
 def cargar_pdfs(carpeta):

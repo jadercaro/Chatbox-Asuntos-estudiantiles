@@ -4,6 +4,9 @@ import os
 import json
 from twilio.rest import Client
 from app.services import preprocessing, embedding, rag
+from dotenv import load_dotenv
+
+load_dotenv()
 
 router = APIRouter()
 
@@ -27,8 +30,10 @@ def ask_question(question: str = Form(...)):
 # -----------------------------
 
 def send_whatsapp_message(to: str, message: str):
-    account_sid = "ACd5e738a20227cca7653a00113a817802"
-    auth_token = "331e068e14fb9d41c98eba0a7e537f23"
+    account_sid = os.getenv("token_sid")
+    auth_token = os.getenv("auth_token")
+    print("🔑 Account SID:", account_sid)
+    print("🔑 Auth Token:", auth_token)
     from_whatsapp_number = "whatsapp:+16364225536"
 
     client = Client(account_sid, auth_token)
