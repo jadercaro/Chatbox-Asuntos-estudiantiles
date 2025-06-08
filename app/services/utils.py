@@ -336,7 +336,7 @@ def procesar_lote(df_lote, chain, request_times, max_requests_per_minute,
     
     return df_lote, request_times, errors
 
-def crear_modelo_llm(api_key, modelo="mistral-saba-24b", temperatura=0.25, max_tokens=512):
+def crear_modelo_llm(api_key, modelo="mistral-saba-24b", temperatura=0.1, max_tokens=512):
     """
     Configura y devuelve un modelo LLM de Groq con los parámetros especificados.
     
