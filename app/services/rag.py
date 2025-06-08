@@ -22,6 +22,7 @@ df['text'] = "Pregunta: " + df['pregunta'] + "\nRespuesta: " + df['respuesta']
 texts = df['text'].tolist()
 
 def answer_question(question: str):
+    print(f"🔍 Pregunta recibida: {question}")
     embedding_pregunta = model.encode([question])
     distancias, indices = index.search(embedding_pregunta, k=5)
 

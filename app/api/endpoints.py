@@ -66,7 +66,7 @@ async def receive_whatsapp_message(request: Request):
         print(f"📩 Mensaje recibido de {from_number}: {incoming_msg}")
 
         try:
-
+            print("pregunta:", incoming_msg)
             respuesta = rag.answer_question(incoming_msg)
 
             # Si la respuesta es un diccionario, extrae solo el texto
