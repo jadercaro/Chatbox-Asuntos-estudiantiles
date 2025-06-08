@@ -6,8 +6,8 @@ from app.services.utils import responder_pregunta_contexto
 from app.config import API_KEY
 
 def answer_question(question):
-
-    embeddings = np.load('app\\services\\Conformed\\faq_embeddings.npy') 
+    embedding_path = Path("app/services/Conformed/faq_embeddings.npy")
+    embeddings = np.load(embedding_path) 
 
     dimension = embeddings.shape[1]
     index = faiss.IndexFlatL2(dimension)
