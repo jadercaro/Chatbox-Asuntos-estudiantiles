@@ -4,6 +4,7 @@ import faiss
 from sentence_transformers import SentenceTransformer
 from app.services.utils import responder_pregunta_contexto
 from app.config import API_KEY
+from pathlib import Path
 
 def answer_question(question):
     embedding_path = Path("app/services/Conformed/faq_embeddings.npy")
@@ -20,7 +21,8 @@ def answer_question(question):
 
     distancias, indices = index.search(embedding_pregunta, k=5)
 
-    df = pd.read_excel("app\\services\\Conformed\\df_unificado.xlsx")
+    df_path = Path("app/services/Conformed/df_unificado.xlsx")
+    df = pd.read_excel(df_path)
     df['text'] = "Pregunta: " + df['pregunta'] + "\nRespuesta: " + df['respuesta']
     texts = df['text'].tolist()
     textos_recuperados = [texts[i] for i in indices[0]]
