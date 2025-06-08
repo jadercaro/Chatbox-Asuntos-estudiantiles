@@ -225,7 +225,7 @@ Sigue estas instrucciones:
 
 1. Elimina cualquier nombre propio (de estudiantes, profesores u otros), números de teléfono, documentos de identidad, fechas específicas (como "3 de mayo", "ayer", "2024-05-01"), códigos o nombres de materias (como "Cálculo 1", "Grupo 02", etc.) u otra información personal.
 2. Si el correo hace referencia a un caso específico tratado anteriormente (por ejemplo: "como les comenté antes", "mi caso anterior", "ya abrí un caso"), no extraigas detalles. En su lugar, la respuesta debe ser:  
-**"Por favor escribe a asuntosestudiantilesingenieria@udea.edu.co para revisar tu caso específico."**
+**"Por favor escribe al correo asuntosestudiantilesingenieria@udea.edu.co para revisar tu caso específico."**
 3. Tu objetivo es generalizar. No respondas con información específica del caso si no aplica a todos los estudiantes.
 4. Devuelve el resultado en el siguiente formato:
 Pregunta: <aquí la pregunta principal en forma general>  
@@ -390,7 +390,7 @@ def ejecutar_cadena(chain, valores_variables):
     respuesta = chain.run(valores_variables)
     return respuesta
 
-PLANTILLA_CONTEXTO_PREGUNTA = """Basado en el siguiente contexto, responde esta pregunta de forma clara y precisa:
+PLANTILLA_CONTEXTO_PREGUNTA = """Basado en el siguiente contexto, responde esta pregunta de forma clara, precisa, sin númeraciones ni listas, en un solo parráfo de 1000 o menos caracteres:
 
 {contexto}
 
