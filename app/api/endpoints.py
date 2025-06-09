@@ -32,8 +32,6 @@ def ask_question(question: str = Form(...)):
 def send_whatsapp_message(to: str, message: str):
     account_sid = os.getenv("token_sid")
     auth_token = os.getenv("auth_token")
-    print("🔑 Account SID:", account_sid)
-    print("🔑 Auth Token:", auth_token)
     from_whatsapp_number = "whatsapp:+16364225536"
 
     client = Client(account_sid, auth_token)
@@ -66,7 +64,6 @@ async def receive_whatsapp_message(request: Request):
         print(f"📩 Mensaje recibido de {from_number}: {incoming_msg}")
 
         try:
-            print("pregunta:", incoming_msg)
             respuesta = rag.answer_question(incoming_msg)
 
             # Si la respuesta es un diccionario, extrae solo el texto

@@ -24,12 +24,13 @@ from langchain.text_splitter import CharacterTextSplitter
 from sentence_transformers import SentenceTransformer
 import os
 from dotenv import load_dotenv
-
-load_dotenv()
-
 # LangChain: Integraciones adicionales
 from langchain_community.vectorstores import FAISS
 from langchain_groq import ChatGroq
+
+load_dotenv()
+
+
 
 #Api Key de Groq
 API_KEY = os.getenv("token_groq")
