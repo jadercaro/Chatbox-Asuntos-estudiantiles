@@ -3,7 +3,7 @@ from fastapi.responses import PlainTextResponse
 import os
 import json
 from twilio.rest import Client
-from app.services import preprocessing, embedding, rag
+from app.services import rag
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -13,17 +13,17 @@ router = APIRouter()
 # -----------------------------
 # Procesamiento de documentos
 # -----------------------------
-@router.post("/preprocess")
-def preprocess_file(file: UploadFile = File(...)):
-    return preprocessing.process_file(file)
+# @router.post("/preprocess")
+# def preprocess_file(file: UploadFile = File(...)):
+#     return preprocessing.process_file(file)
 
-@router.post("/embed")
-def embed_documents():
-    return embedding.embed_documents()
+# @router.post("/embed")
+# def embed_documents():
+#     return embedding.embed_documents()
 
-@router.post("/ask")
-def ask_question(question: str = Form(...)):
-    return rag.answer_question(question)
+# @router.post("/ask")
+# def ask_question(question: str = Form(...)):
+#     return rag.answer_question(question)
 
 # -----------------------------
 # Enviar mensaje por WhatsApp
