@@ -12,6 +12,7 @@ import numpy as np
 import pdfplumber
 from PyPDF2 import PdfReader
 from tqdm import tqdm
+import pymupdf  
 
 
 # LangChain: Text processing y modelos
