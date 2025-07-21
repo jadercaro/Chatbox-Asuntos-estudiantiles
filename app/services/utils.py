@@ -342,13 +342,13 @@ def procesar_lote(df_lote, chain, request_times, max_requests_per_minute,
     
     return df_lote, request_times, errors
 
-def crear_modelo_llm(api_key, modelo="mistral-saba-24b", temperatura=0.1, max_tokens=512):
+def crear_modelo_llm(api_key, modelo="gemma2-9b-it", temperatura=0.25, max_tokens=512):
     """
     Configura y devuelve un modelo LLM de Groq con los parámetros especificados.
     
     Args:
         api_key (str): Clave API de Groq
-        modelo (str): Modelo a utilizar (default: "mistral-saba-24b")
+        modelo (str): Modelo a utilizar (default: "gemma2-9b-it")
         temperatura (float): Temperatura para la generación (default: 0.25)
         max_tokens (int): Máximo de tokens a generar (default: 512)
     
@@ -396,7 +396,7 @@ def ejecutar_cadena(chain, valores_variables):
     respuesta = chain.run(valores_variables)
     return respuesta
 
-PLANTILLA_CONTEXTO_PREGUNTA = """Basado en el siguiente contexto, responde esta pregunta de forma clara, precisa, sin númeraciones ni listas, en un solo parráfo de 1000 o menos caracteres:
+PLANTILLA_CONTEXTO_PREGUNTA = """Basado en el siguiente contexto, responde esta pregunta de forma clara, precisa, sin númeraciones ni listas, en un solo parráfo de 1000 o menos caracteres y en una sola línea sin espacios al final ni saltos de línea:
 
 {contexto}
 
@@ -420,7 +420,7 @@ Pregunta: Ninguna
 Respuesta: Ninguna
 """
 
-def responder_pregunta_contexto(api_key, contexto, pregunta, modelo="mistral-saba-24b"):
+def responder_pregunta_contexto(api_key, contexto, pregunta, modelo="gemma2-9b-it"):
     """
     Función específica para responder preguntas basadas en un contexto.
     
@@ -428,7 +428,7 @@ def responder_pregunta_contexto(api_key, contexto, pregunta, modelo="mistral-sab
         api_key (str): Clave API de Groq
         contexto (str): Contexto para la pregunta
         pregunta (str): Pregunta a responder
-        modelo (str): Modelo a utilizar (default: "mistral-saba-24b")
+        modelo (str): Modelo a utilizar (default: "gemma2-9b-it")
     
     Returns:
         str: Respuesta generada por el modelo
@@ -441,7 +441,7 @@ def responder_pregunta_contexto(api_key, contexto, pregunta, modelo="mistral-sab
     )
     return ejecutar_cadena(chain, {"contexto": contexto, "pregunta": pregunta})
 
-def extraer_qa_email(cuerpo_email, api_key=API_KEY, modelo="llama3-8b-8192"):
+def extraer_qa_email(cuerpo_email, api_key=API_KEY, modelo="gemma2-9b-it"):
     """
     Función específica para extraer preguntas y respuestas de emails.
     

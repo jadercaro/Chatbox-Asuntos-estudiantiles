@@ -18,8 +18,8 @@ from langchain_groq import ChatGroq
 API_KEY = os.getenv("token_groq")
 
 # Solo se cargan una vez
-embedding_path = Path("app/services/Conformed/faq_embeddings.npy")
-df_path = Path("app/services/Conformed/df_unificado.xlsx")
+embedding_path = Path("app/services/Conformed/faq_embeddings_v5.npy")
+df_path = Path("app/services/Conformed/contexto_rag_v5.csv")
 
 # Cache global
 model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -28,9 +28,9 @@ dimension = embeddings.shape[1]
 index = faiss.IndexFlatL2(dimension)
 index.add(embeddings)
 
-df = pd.read_excel(df_path)
-df['text'] = "Pregunta: " + df['pregunta'] + "\nRespuesta: " + df['respuesta']
-texts = df['text'].tolist()
+df = pd.read_csv(df_path)
+#df['text'] = "Pregunta: " + df['pregunta'] + "\nRespuesta: " + df['respuesta']
+texts = df['texts'].tolist()
 
 def answer_question(question: str):
     embedding_pregunta = model.encode([question])
@@ -40,5 +40,8 @@ def answer_question(question: str):
     contexto = "\n\n".join(textos_recuperados)
 
     respuesta = responder_pregunta_contexto(API_KEY, contexto, question)
+
+    #Remplazar saltos de línea y espacios al final por vacio
+    respuesta = respuesta.replace("\n", "").strip()
 
     return {"respuesta": respuesta}
